@@ -25,8 +25,8 @@
     function loadPlaces(position) {
     const params = {
         radius: 300,    // search places not farther than this value (in meters)
-        clientId: '4PD5PGETABZIW0ZCOLTS1O3MGUOOWVKAQQLD4GJD2X4QGA5A',
-        clientSecret: 'QQDX4IFMXF534D0RZPVIJUP5VG53ZJPBZMRUAATPQWCXQKTB',
+        clientId: 'X2D4DSEEE2CMRU2YWPZZXVT2UP0BPWB3PIMTAWCQICLPJHAC',
+        clientSecret: 'EAPFJFTT5HKBLROUHIEYRTO0QNQJFM2C1YJRS3YOXP44P2AX',
         version: '20300101',    // foursquare versioning, required but unuseful for this demo
     };
 
@@ -34,7 +34,7 @@
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
     // Foursquare API (limit param: number of maximum places to fetch)
-    const endpoint = `${corsProxy}https://api.foursquare.com/v2/venues/search?intent=checkin
+    const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/search?intent=checkin
         &ll=${position.latitude},${position.longitude}
         &radius=${params.radius}
         &client_id=${params.clientId}
@@ -45,7 +45,7 @@
         .then((res) => {
             return res.json()
                 .then((resp) => {
-                    return resp.response.venues;
+                    return resp.response.places;
                 })
         })
         .catch((err) => {
